@@ -1,0 +1,23 @@
+version: '2'
+services:
+  couchdb:
+    build:
+      context: .
+      dockerfile: Dockerfile-couchdb
+    ports:
+      - "5984:5984"
+    networks:
+      dbs:
+        aliases:
+          - couchdb
+
+  couchdb-lucene:
+    image: klaemo/couchdb-lucene:latest
+    networks:
+      dbs:
+        aliases:
+          - couchdb-lucene
+
+networks:
+  dbs:
+    driver: bridge
