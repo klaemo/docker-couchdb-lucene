@@ -13,8 +13,8 @@ services:
 
   couchdb-lucene:
     build:
-      context: ../
-      dockerfile: 2.1.0/Dockerfile
+      context: ../2.1.0
+      dockerfile: Dockerfile
     networks:
       dbs:
         aliases:

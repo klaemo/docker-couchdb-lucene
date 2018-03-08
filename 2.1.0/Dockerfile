@@ -10,9 +10,7 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-FROM java:8
-
-MAINTAINER Clemens Stolle klaemo@apache.org
+FROM openjdk:8
 
 RUN groupadd -r couchdb && useradd -d /opt/couchdb-lucene -g couchdb couchdb
 
@@ -30,9 +28,8 @@ RUN apt-get update \
   && apt-get install -y maven \
   && cd /usr/src \
   && curl -L https://github.com/rnewson/couchdb-lucene/archive/v$COUCHDB_LUCENE_VERSION.tar.gz | tar -xz \
-  && cd couchdb-lucene-$COUCHDB_LUCENE_VERSION
-
-RUN mvn
+  && cd couchdb-lucene-$COUCHDB_LUCENE_VERSION \
+  && mvn
 
 RUN cd /usr/src/couchdb-lucene-$COUCHDB_LUCENE_VERSION/target \
   && unzip couchdb-lucene-$COUCHDB_LUCENE_VERSION-dist.zip \
@@ -45,7 +42,7 @@ RUN apt-get remove --auto-remove -y maven \
   && sed -e 's/localhost:5984/couchdb:5984/' -i /opt/couchdb-lucene/conf/couchdb-lucene.ini \
   && chown -R couchdb:couchdb /opt/couchdb-lucene
 
-COPY run-lucene.sh /opt/couchdb-lucene/run-lucene.sh
+COPY ./run-lucene.sh /opt/couchdb-lucene/run-lucene.sh
 RUN chmod +x /opt/couchdb-lucene/run-lucene.sh
 
 WORKDIR /opt/couchdb-lucene
