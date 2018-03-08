@@ -34,7 +34,8 @@ _fti = {couch_httpd_proxy, handle_proxy_req, <<"http://couchdb-lucene:5985">>}
 ### Available Tags
 
 * `1.0.2`: CouchDB-Lucene 1.0.2
-* `1.1.0`, `latest`: CouchDB-Lucene 1.1.0
+* `1.1.0`: CouchDB-Lucene 1.1.0
+* `2.1.0`, `latest`: CouchDB-Lucene 2.1.0
 
 ## Further reading
 
