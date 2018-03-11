@@ -24,12 +24,13 @@ sed -e 's/couchdb:5984/your-couchdb-hostname:5984/' -i /opt/couchdb-lucene/conf/
 
 ### Proxy handler for CouchDB
 
-Add the following to your CouchDB's `local.ini` or in the configuration UI:
+Add the following to your CouchDB's `local.ini` or in the configuration UI (adjusting the couchdb-lucene URL accordingly):
 ```
 [httpd_global_handlers]
 _fti = {couch_httpd_proxy, handle_proxy_req, <<"http://couchdb-lucene:5985">>}
 ```
-***Note:*** adjust the URL to couchdb-lucene accordingly.
+***Note:*** The proxy handler currently doesn't work with CouchDB 2.0 (see [this issue](https://issues.apache.org/jira/browse/COUCHDB-3172)).
+You can query couchdb-lucene directly instead.
 
 ### Available Tags
 
